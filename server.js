@@ -68,7 +68,6 @@ app.get('/:id', async(req, res) => {
     //socket.io
     io.on('connection', (socket) => {
         console.log(`id: ${socket.id} connected`);
-
         socket.on('save-time', async(data) => {
             console.log(data.content);
             const routeToUpdate = await Model.findOneAndUpdate({url: id}, {content: data.content});
@@ -80,10 +79,11 @@ app.get('/:id', async(req, res) => {
         })
     })
 
+    //route handler
     const foundRoute = await Model.findOne({ url: id });
     if (foundRoute){
         const update = await Model.findOneAndUpdate({_id: foundRoute._id}, {num_access: foundRoute.num_access + 1});
-        return res.render('main');
+        return res.render('main', {content: foundRoute.content});
     }
     else{
         const newRoute = new Model({url: id});
@@ -95,7 +95,6 @@ app.get('/:id', async(req, res) => {
         
         return res.render('main');
     }
-    
 });
 
 

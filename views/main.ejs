@@ -13,13 +13,17 @@
 <body>
 
     <div id="input-div">
-        <textarea class="text" id="text-content" oninput="logcontent()" spellcheck="false"></textarea>
+        <% if(content){ %>
+            <textarea class="text" id="text-content" oninput="logcontent()" spellcheck="false"><%= content %></textarea>
+            <% } else{ %>
+                <textarea class="text" id="text-content" oninput="logcontent()" spellcheck="false"></textarea>
+                <% } %>
     </div>
 
     <script>
         const socket = io()
-
         const textContent = document.getElementById('text-content');
+
         socket.on('text-changed', (data) => {
             textContent.innerHTML = data.content;
         })
