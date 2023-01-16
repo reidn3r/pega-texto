@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
+    <script src="socket.io/socket.io.js"></script>
     <title>pega-texto</title>
 </head>
 
@@ -16,17 +17,31 @@
     </div>
 
     <script>
+        const socket = io()
+
+        const textContent = document.getElementById('text-content');
+        socket.on('text-changed', (data) => {
+            textContent.innerHTML = data.content;
+        })
+
         function logcontent() {
-            const texto = document.getElementById('text-content');
+            const text = document.getElementById('text-content');
             let saveTime = setTimeout(() => {
+                /* 
+                Após 3 segundos sem novo input é emitido um novo evento
+                do cliente para servidor para que o conteúdo do texto seja salvo
+                */
+                socket.emit('save-time', { content: text.value });
                 console.log('saved.');
             }, 3000);
 
-            texto.addEventListener('input', (event) => {
-                //console.log('nao salvo');
+            text.addEventListener('input', (event) => {
                 clearInterval(saveTime);
+
+                //Novo evento é emitido para atualizar o conteúdo da pagina
+                socket.emit('input-changed', { content: text.value });
             })
-            console.log(texto.value);
+            console.log(text.value);
         }
     </script>
 </body>
