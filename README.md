@@ -13,3 +13,5 @@ Projeto em NodeJS que funciona como um editor de texto online.
   * Variáveis de ambiente: dotenv
   
 - Todas as outras dependências estão listadas em package.json
+
+- Ainda é necessário realizar testes e corrigir funcionamento do web socket
