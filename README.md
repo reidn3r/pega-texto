@@ -16,4 +16,4 @@ Projeto em NodeJS que funciona como um editor de texto online.
 
 - Arquitetura: MVC
 
-- Necessário e corrigir funcionamento do web socket e realizar testes
+- Necessário e corrigir funcionamento do web socket (não está 100% como deveria)
