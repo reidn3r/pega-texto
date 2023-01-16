@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/style.css">
+    <title>pega-texto</title>
+</head>
+
+<body>
+
+    <div class="input-div">
+        <textarea class="text" id="text-content" oninput="logcontent()" spellcheck="false"></textarea>
+    </div>
+
+    <script>
+        function logcontent() {
+            const texto = document.getElementById('text-content');
+            let saveTime = setTimeout(() => {
+                console.log('saved.');
+            }, 3000);
+
+            texto.addEventListener('input', (event) => {
+                //console.log('nao salvo');
+                clearInterval(saveTime);
+            })
+            console.log(texto.value);
+        }
+    </script>
+</body>
+
+</html>
