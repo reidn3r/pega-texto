@@ -1,3 +1,4 @@
+//home page
 const getHome = (req, res) => {
     res.render('home');
 }

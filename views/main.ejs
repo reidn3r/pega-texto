@@ -25,7 +25,7 @@
         const textContent = document.getElementById('text-content');
 
         socket.on('text-changed', (data) => {
-            textContent.innerHTML = data.content;
+            textContent.value = data.content;
         })
 
         function logcontent() {
@@ -36,7 +36,6 @@
                 do cliente para servidor para que o conteúdo do texto seja salvo
                 */
                 socket.emit('save-time', { content: text.value });
-                console.log('saved.');
             }, 3000);
 
             text.addEventListener('input', (event) => {
