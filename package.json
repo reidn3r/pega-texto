@@ -20,6 +20,7 @@
     "express": "^4.18.2",
     "mongoose": "^6.8.3",
     "morgan": "^1.10.0",
-    "socket.io": "^4.5.4"
+    "socket.io": "^4.5.4",
+    "zip-local": "^0.3.5"
   }
 }

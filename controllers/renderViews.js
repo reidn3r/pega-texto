@@ -1,24 +1,15 @@
 const path = require('path');
-const validateRoute = require('./validateRoute');
+const correctRoute = require('./correctRoute');
 const Model = require('../model/UrlModel');
 
-//home page
 const getHome = (req, res) => {
     res.render('home');
 }
 
 const getId = async(req, res, next) => {
-    /*
-        Tratar rota
-    */
-
    if(path.extname(req.url).length > 0) return;    
    const { id } = req.params;
-   const route = validateRoute(id);
-   if(route.length == 0) return res.redirect('/');
    
-    //next();
-
    let connections = [];
    const io = req.app.get('socketio');
 
@@ -50,17 +41,17 @@ const getId = async(req, res, next) => {
         const newRoute = new Model({url: id});
         await newRoute.save();
 
-        //update new route num_acces to 1
         const foundNewRoute = await Model.findOne({url: id});
-
         await Model.findOneAndUpdate({_id: foundNewRoute._id}, {num_access: foundNewRoute.num_access + 1});        
+        
         return res.render('main', {content: null});
     }
+    next();
 }
 
 const postHome = async(req, res) => {
     const { form_input } = req.body;
-    const route = validateRoute(form_input);
+    const route = correctRoute(form_input);
     if(route.length == 0) return res.redirect('/');
 
     const foundUrl = await Model.findOne({url: route});
