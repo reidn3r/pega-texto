@@ -6,11 +6,15 @@ const morgan = require('morgan');
 const mongoose = require('mongoose');
 const mongoConnect = require('./config/dbConnect');
 
-//expressjs require
 const express = require('express');
-const app = require('./controllers/renderViews').app;
+const app = express();
 
-const server = require('./controllers/renderViews').server;
+//socket.io requirement
+const http = require('http');
+const server = http.createServer(app);
+const { Server } = require('socket.io');
+const io = new Server(server);
+app.set('socketio', io);
 
 //db connect
 mongoose.set('strictQuery', true);
