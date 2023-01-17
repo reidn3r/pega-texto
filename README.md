@@ -3,13 +3,15 @@
 <p align="center">📝 Projeto em NodeJS que funciona como um editor de texto online, geralmente útil para estudantes que costumam compartilharem conteúdos (códigos? atividades? trabalhos? colas?) entre si</p>
 
 <h4 align="center">🚧 Projeto ainda em construção, necessário corrigir funcionamento do web socket (não está 100% como deveria)🚧</h4>
-<h4> </h4>
 
+<hr>
+  
 ### 💻 Tecnologias
 Principais dependências utilizadas:
 - [Node.js](https://nodejs.org/en/)
 - [Express](https://expressjs.com/en/api.html)
 - [Socket.io](https://socket.io/pt-br/docs/v4/)
+- [Mongoose](https://mongoosejs.com/docs/populate.html)
 
 ### Rotas
 - requisição GET em '/': 
@@ -23,6 +25,8 @@ Principais dependências utilizadas:
     * Qualquer pessoa pode alterar o conteúdo de qualquer rota
     * Alterações possíveis de perceber em tempo real (socket.io)
     * Para todas as rotas dinâmicas é contado a quantidade de vezes que foi acessada
+
+<hr>
 
 <h1 align="center">
   <img alt="pega-texto" title="#PEGA-texto" src="./screenshots/img.png" />
