@@ -24,7 +24,11 @@ Principais dependências utilizadas:
     * O conteúdo é salvo automaticamente após 3 segundos da inserção do último caractere
     * Qualquer pessoa pode alterar o conteúdo de qualquer rota
     * Alterações possíveis de perceber em tempo real (socket.io)
-    * Para todas as rotas dinâmicas é contado a quantidade de vezes que foi acessada
+    * Para todas as rotas dinâmicas é contado a quantidade de vezes que foi acessada 
+ - requisição GET em '/qualquer_url/zip':
+    * Acontece o download do conteúdo da pagina em um arquivo .txt com o nome da url
+    * Necessário atualizar a página para que o salvamento automático do conteúdo continue (será corrigido)
+    * Em breve será possível baixar um arquivo .zip contendo o .txt
 
 <hr>
 
