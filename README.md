@@ -1,6 +1,6 @@
 <h1 align="center">PEGA-texto 📖</h1>
 
-<p align="center">📝 Projeto em NodeJS que funciona como um editor de texto online, geralmente útil para estudantes que costumam compartilharem conteúdos (códigos? atividades? trabalhos? colas?) entre si</p>
+<p align="center">📝 Projeto em NodeJS que funciona como um editor de texto online, geralmente útil para estudantes que costumam compartilharem conteúdos (códigos? atividades? trabalhos? colas?) entre si (inspirado em dontpad.com) </p>
 
 <h4 align="center">🚧 Projeto ainda em construção, necessário corrigir funcionamento do web socket (não está 100% como deveria)🚧</h4>
 
