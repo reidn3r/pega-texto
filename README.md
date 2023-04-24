@@ -2,8 +2,6 @@
 
 <p align="center">📝 Projeto em NodeJS que funciona como um editor de texto online, geralmente útil para estudantes que costumam compartilharem conteúdos (códigos? atividades? trabalhos? colas?) entre si (inspirado em dontpad.com) </p>
 
-<h4 align="center">🚧 Projeto ainda em construção🚧</h4>
-
 <hr>
   
 ### 💻 Tecnologias
