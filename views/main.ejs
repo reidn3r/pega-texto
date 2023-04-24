@@ -14,7 +14,8 @@
 
     <div id="input-div">
         <% if(content){ %>
-            <textarea class="text" id="text-content" oninput="logcontent()" spellcheck="false"><%= content %></textarea>
+            <textarea class="text" id="text-content" oninput="logcontent()" spellcheck="false"
+                style="font-size: 13pt"><%= content %></textarea>
             <% } else{ %>
                 <textarea class="text" id="text-content" oninput="logcontent()" spellcheck="false"></textarea>
                 <% } %>
@@ -28,6 +29,22 @@
             textContent.value = data.content;
         })
 
+        textContent.onkeydown = (e) => {
+            //Tab indentation
+            if (e.keyCode == 9) { //tab keycode
+                e.preventDefault();
+                let content = textContent.value;
+                let cursor = textContent.selectionStart;
+                let end = textContent.selectionEnd;
+
+                textContent.value = content.substring(0, cursor) + "\t" + content.substring(end);
+                textContent.selectionStart = cursor + 1;
+                textContent.selectionEnd = cursor + 1;
+
+                return false;
+            }
+        }
+
         function logcontent() {
             const text = document.getElementById('text-content');
             let saveTime = setTimeout(() => {
@@ -36,15 +53,17 @@
                 do cliente para servidor para que o conteúdo do texto seja salvo
                 */
                 socket.emit('save-time', { content: text.value });
+
+                //Novo evento é emitido para atualizar o conteúdo da pagina
+                socket.emit('input-changed', { content: text.value });
+
             }, 3000);
 
             text.addEventListener('input', (event) => {
                 clearInterval(saveTime);
 
-                //Novo evento é emitido para atualizar o conteúdo da pagina
-                socket.emit('input-changed', { content: text.value });
             })
-            console.log(text.value);
+            // console.log(text.value);
         }
     </script>
 

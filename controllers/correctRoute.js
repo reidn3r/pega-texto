@@ -7,5 +7,5 @@ const correctRoute = (route) => {
     }
     return out;
 }
-//console.log(correctRoute('///////'));
+
 module.exports = correctRoute;

@@ -4,7 +4,7 @@ const morgan = require('morgan');
 
 //mongoose require
 const mongoose = require('mongoose');
-const mongoConnect = require('./config/dbConnect');
+const connectDB = require('./config/dbConnect');
 
 const express = require('express');
 const app = express();
@@ -18,7 +18,7 @@ app.set('socketio', io);
 
 //db connect
 mongoose.set('strictQuery', true);
-mongoConnect();
+connectDB();
 
 //log requests
 app.use(morgan('tiny'));

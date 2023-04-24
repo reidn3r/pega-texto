@@ -7,30 +7,30 @@ const getHome = (req, res) => {
 }
 
 const getId = async(req, res, next) => {
-   if(path.extname(req.url).length > 0) return;    
-   const { id } = req.params;
-   
-   let connections = [];
-   const io = req.app.get('socketio');
+    if(path.extname(req.url).length > 0) return;    
+    const { id } = req.params;
 
-   io.on('connection', (socket) => {
+    let connections = [];
+    const io = req.app.get('socketio');
+
+    io.on('connection', (socket) => {
         //Não permite várias conexões com o mesmo id
         connections.push(socket.id);
         if(connections[0] === socket.id){
             io.removeAllListeners('connection');
         }
-       console.log(`id: ${socket.id} connected`);
+        console.log(`id: ${socket.id} connected`);
 
-       socket.on('save-time', async(data) => {
-           await Model.findOneAndUpdate({url: id}, {content: data.content});
-           console.log('text saved');
-       })
-   
-       socket.on('input-changed', (data) => {
-           io.emit('text-changed', (data));
-       })
-   })
-   
+        socket.on('save-time', async(data) => {
+            await Model.findOneAndUpdate({url: id}, {content: data.content});
+            console.log('text saved');
+        })
+
+        socket.on('input-changed', (data) => {
+            io.emit('text-changed', (data));
+        })
+    })
+
     //route handler
     const foundRoute = await Model.findOne({ url: id });
     if (foundRoute){
@@ -46,7 +46,6 @@ const getId = async(req, res, next) => {
         
         return res.render('main', {content: null});
     }
-    next();
 }
 
 const postHome = async(req, res) => {
